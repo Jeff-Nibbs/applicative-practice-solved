@@ -5,8 +5,25 @@ import { data } from "../data/data";
 // Return example: 1902
 
 export function getGreatestDiscoveryYear(data) {
-  // Your code goes here...
-  // feel free to import your `maxBy` or `minBy` methods from previous lessons
+  let answer = [];
+  let counter = {};
+  let highScore = 0;
+
+  let yearArray = data.asteroids.map(
+    (asteroidYear) => asteroidYear.discoveryYear
+  );
+
+  yearArray.forEach((year) => {
+    counter[year] = (counter[year] || 0) + 1;
+    if (counter[year] > highScore) {
+      highScore = counter[year];
+      answer = [year];
+    }
+    if (counter[year] === highScore) {
+      answer.push(year);
+    }
+  });
+  return answer[0];
 }
 
 // === TEST YOURSELF ===
